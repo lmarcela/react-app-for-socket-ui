@@ -33,7 +33,6 @@ function App() {
 
   useEffect(() => {
     socket.on("current-movies", (movies) => {
-      console.log(movies);
       setMovies(movies);
     });
   }, [socket]);
