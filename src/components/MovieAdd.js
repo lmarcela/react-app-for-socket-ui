@@ -1,12 +1,14 @@
 import React, { useState } from "react";
+import { useSocket } from "./hooks/useSocket";
 
-export const MovieAdd = ({ createMovie }) => {
+export const MovieAdd = () => {
   const [value, setValue] = useState("");
+  const { socket } = useSocket("http://localhost:8080");
 
   const onSubmit = (ev) => {
     ev.preventDefault();
     if (value.trim().length > 0) {
-      createMovie(value);
+      socket.emit("create-movie", { name: value });
     }
     setValue("");
   };

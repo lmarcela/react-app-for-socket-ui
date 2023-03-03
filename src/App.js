@@ -5,8 +5,7 @@ import { MovieList } from "./components/MovieList";
 
 function App() {
   const [movies, setMovies] = useState([]);
-  const {socket, online}= useSocket('http://localhost:8080')
-
+  const { socket, online } = useSocket("http://localhost:8080");
 
   useEffect(() => {
     socket.on("current-movies", (movies) => {
@@ -24,10 +23,6 @@ function App() {
 
   const changeName = (id, name) => {
     socket.emit("change-name-movie", { id, name });
-  };
-
-  const createMovie = (name) => {
-    socket.emit("create-movie", { name });
   };
 
   return (
@@ -54,7 +49,7 @@ function App() {
           />
         </div>
         <div className="col-4">
-          <MovieAdd createMovie={createMovie} />
+          <MovieAdd />
         </div>
       </div>
     </div>
