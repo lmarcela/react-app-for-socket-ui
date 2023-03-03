@@ -1,6 +1,6 @@
 # MoviesApp
 
-Este proyecto se conecta aun backend y emite o recibe eventos en tiempo real.
+Esta rama se conecta aun backend (https://github.com/lmarcela/web-sockets-basic/tree/backend-server-movie-names-app)y emite o recibe eventos CRUD en tiempo real.
 
 ## Uso
 
