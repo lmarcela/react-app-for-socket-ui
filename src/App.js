@@ -1,35 +1,12 @@
 import { useEffect, useState } from "react";
-import io from "socket.io-client";
+import { useSocket } from "./components/hooks/useSocket";
 import { MovieAdd } from "./components/MovieAdd";
 import { MovieList } from "./components/MovieList";
 
-const connectSocketServer = () => {
-  const socket = io.connect("http://localhost:8080", {
-    transports: ["websocket"],
-  });
-  return socket;
-};
-
 function App() {
-  const [socket] = useState(connectSocketServer());
-  const [online, setOnline] = useState(false);
   const [movies, setMovies] = useState([]);
+  const {socket, online}= useSocket('http://localhost:8080')
 
-  useEffect(() => {
-    setOnline(socket.connected);
-  }, [socket]);
-
-  useEffect(() => {
-    socket.on("connect", () => {
-      setOnline(true);
-    });
-  }, [socket]);
-
-  useEffect(() => {
-    socket.on("disconnect", () => {
-      setOnline(false);
-    });
-  }, [socket]);
 
   useEffect(() => {
     socket.on("current-movies", (movies) => {
