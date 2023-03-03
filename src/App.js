@@ -13,20 +13,28 @@ const connectSocketServer = () => {
 function App() {
   const [socket] = useState(connectSocketServer());
   const [online, setOnline] = useState(false);
+  const [movies, setMovies] = useState([]);
 
   useEffect(() => {
     setOnline(socket.connected);
   }, [socket]);
 
   useEffect(() => {
-    socket.on('connect',()=>{
+    socket.on("connect", () => {
       setOnline(true);
     });
   }, [socket]);
 
   useEffect(() => {
-    socket.on('disconnect',()=>{
+    socket.on("disconnect", () => {
       setOnline(false);
+    });
+  }, [socket]);
+
+  useEffect(() => {
+    socket.on("current-movies", (movies) => {
+      console.log(movies);
+      setMovies(movies);
     });
   }, [socket]);
 
@@ -46,7 +54,7 @@ function App() {
       <hr />
       <div className="row">
         <div className="col-8">
-          <MovieList />
+          <MovieList data={movies} />
         </div>
         <div className="col-4">
           <MovieAdd />

@@ -1,10 +1,16 @@
-# Getting Started with Create React App
+# MoviesApp
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este proyecto se conecta aun backend y emite o recibe eventos en tiempo real.
 
-## Available Scripts
+## Uso
 
-In the project directory, you can run:
+```bash
+npm install // Solo se debe hacer la primera vez
+```
+
+```bash
+npm run dev // Para correr la aplicacion
+```
 
 ### `npm start`
 
