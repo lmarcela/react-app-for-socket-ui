@@ -38,8 +38,12 @@ function App() {
   }, [socket]);
 
   const vote = (id) => {
-    socket.emit('vote-movie',id)
-  }
+    socket.emit("vote-movie", id);
+  };
+
+  const remove = (id) => {
+    socket.emit("remove-movie", id);
+  };
 
   return (
     <div className="container">
@@ -57,7 +61,7 @@ function App() {
       <hr />
       <div className="row">
         <div className="col-8">
-          <MovieList data={movies} vote={vote}/>
+          <MovieList data={movies} vote={vote} remove={remove} />
         </div>
         <div className="col-4">
           <MovieAdd />

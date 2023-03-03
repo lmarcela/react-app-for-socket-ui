@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-export const MovieList = ({ data, vote }) => {
+export const MovieList = ({ data, vote, remove }) => {
   const [movies, setMovies] = useState(data);
   useEffect(() => {
     setMovies(data);
@@ -25,7 +25,10 @@ export const MovieList = ({ data, vote }) => {
     return movies.map((movie) => (
       <tr key={movie.id}>
         <td>
-          <button className="btn btn-primary" onClick={()=>vote(movie.id)}> +1 </button>
+          <button className="btn btn-primary" onClick={() => vote(movie.id)}>
+            {" "}
+            +1{" "}
+          </button>
         </td>
         <td>
           <input
@@ -39,7 +42,9 @@ export const MovieList = ({ data, vote }) => {
           <h3>{movie.votes}</h3>
         </td>
         <td>
-          <button className="btn btn-danger">Borrar</button>
+          <button className="btn btn-danger" onClick={() => remove(movie.id)}>
+            Borrar
+          </button>
         </td>
       </tr>
     ));
