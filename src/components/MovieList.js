@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 
-export const MovieList = ({ data, vote, remove }) => {
+export const MovieList = ({ data, vote, remove, changeName }) => {
   const [movies, setMovies] = useState(data);
   useEffect(() => {
     setMovies(data);
   }, [data]);
 
-  const changeName = (event, id) => {
+  const changeNameMovie = (event, id) => {
     const newName = event.target.value;
     setMovies((movies) =>
       movies.map((movie) => {
@@ -19,7 +19,7 @@ export const MovieList = ({ data, vote, remove }) => {
   };
 
   const onLostFocus = (id, name) => {
-    console.log(id, name);
+    changeName({id, name});
   };
   const crearRows = () => {
     return movies.map((movie) => (
@@ -34,7 +34,7 @@ export const MovieList = ({ data, vote, remove }) => {
           <input
             className="form-control"
             value={movie.name}
-            onChange={(event) => changeName(event, movie.id)}
+            onChange={(event) => changeNameMovie(event, movie.id)}
             onBlur={() => onLostFocus(movie.id, movie.name)}
           />
         </td>
