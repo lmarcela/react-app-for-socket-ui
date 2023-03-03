@@ -45,8 +45,12 @@ function App() {
     socket.emit("remove-movie", id);
   };
 
-  const changeName = ({id, name}) => {
-    socket.emit("change-name-movie", {id, name});
+  const changeName = (id, name) => {
+    socket.emit("change-name-movie", { id, name });
+  };
+
+  const createMovie = (name) => {
+    socket.emit("create-movie", { name });
   };
 
   return (
@@ -65,10 +69,15 @@ function App() {
       <hr />
       <div className="row">
         <div className="col-8">
-          <MovieList data={movies} vote={vote} remove={remove} changeName={changeName} />
+          <MovieList
+            data={movies}
+            vote={vote}
+            remove={remove}
+            changeName={changeName}
+          />
         </div>
         <div className="col-4">
-          <MovieAdd />
+          <MovieAdd createMovie={createMovie} />
         </div>
       </div>
     </div>

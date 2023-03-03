@@ -19,7 +19,7 @@ export const MovieList = ({ data, vote, remove, changeName }) => {
   };
 
   const onLostFocus = (id, name) => {
-    changeName({id, name});
+    changeName(id, name);
   };
   const crearRows = () => {
     return movies.map((movie) => (
