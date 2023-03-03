@@ -37,6 +37,10 @@ function App() {
     });
   }, [socket]);
 
+  const vote = (id) => {
+    socket.emit('vote-movie',id)
+  }
+
   return (
     <div className="container">
       <div className="alert">
@@ -53,7 +57,7 @@ function App() {
       <hr />
       <div className="row">
         <div className="col-8">
-          <MovieList data={movies} />
+          <MovieList data={movies} vote={vote}/>
         </div>
         <div className="col-4">
           <MovieAdd />
