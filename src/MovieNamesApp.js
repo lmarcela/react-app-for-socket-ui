@@ -1,10 +1,10 @@
 import { SocketProvider } from "./context/SocketContext";
-import App from "./App";
+import HomePage from "./pages/HomePage";
 
 export const MovieNamesApp = () => {
   return (
     <SocketProvider>
-      <App />
+      <HomePage />
     </SocketProvider>
   );
 };
