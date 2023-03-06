@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { MovieAdd } from "../components/MovieAdd";
+import { MovieChart } from "../components/MovieChart";
 import { MovieList } from "../components/MovieList";
 import { SocketContext } from "../context/SocketContext";
 
@@ -20,6 +21,11 @@ function HomePage() {
       </div>
       <h1>MovieNames</h1>
       <hr />
+      <div className="row">
+        <div className="col">
+          <MovieChart />
+        </div>
+      </div>
       <div className="row">
         <div className="col-8">
           <MovieList />
