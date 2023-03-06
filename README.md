@@ -9,7 +9,7 @@ npm install // Solo se debe hacer la primera vez
 ```
 
 ```bash
-npm run dev // Para correr la aplicacion
+npm start // Para correr la aplicacion
 ```
 
 ### `npm start`
