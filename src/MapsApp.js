@@ -1,5 +1,7 @@
+import { MapPage } from "./pages/MapPage";
+
 function MapsApp() {
-  return <h1>Hi Marce</h1>;
+  return <MapPage />;
 }
 
 export default MapsApp;
