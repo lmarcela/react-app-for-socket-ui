@@ -1,4 +1,5 @@
 // import io from "socket.io-client";
+import { UiProvider } from "./context/UIContext";
 import { RouterPage } from "./pages/RouterPage";
 
 // const connectSocketServer = () => {
@@ -52,7 +53,9 @@ function TicketApp() {
   // };
 
   return (
-    <RouterPage />
+    <UiProvider>
+      <RouterPage />
+    </UiProvider>
   );
 }
 

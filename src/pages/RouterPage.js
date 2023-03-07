@@ -4,7 +4,7 @@ import {
   VideoCameraOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu, theme } from "antd";
-import React from "react";
+import React, { useContext } from "react";
 import {
   BrowserRouter as Router,
   Link,
@@ -12,6 +12,7 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
+import { UiContext } from "../context/UIContext";
 import { Cola } from "./Cola";
 import { CrearTicket } from "./CrearTicket";
 import { Escritorio } from "./Escritorio";
@@ -22,10 +23,13 @@ export const RouterPage = () => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+
+  const { ocultarMenu } = useContext(UiContext);
+
   return (
     <Router>
       <Layout style={{ height: "100vh" }}>
-        <Sider collapsedWidth={0} breakpoint="md">
+        <Sider collapsedWidth={0} breakpoint="md" hidden={ocultarMenu}>
           <Menu
             theme="dark"
             mode="inline"

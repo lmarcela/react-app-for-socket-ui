@@ -2,10 +2,12 @@ import React from "react";
 import { Button, Form, Input, InputNumber, Typography, Divider } from "antd";
 import { SaveOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
+import { useHideMenu } from "../hooks/useHideMenu";
 
 const { Title, Text } = Typography;
 export const Ingresar = () => {
   const history = useNavigate();
+  useHideMenu(false);
 
   const onFinish = (values) => {
     console.log("Success:", values);
