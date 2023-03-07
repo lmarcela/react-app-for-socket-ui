@@ -1,22 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import { Row, Col, Typography, Button, Divider } from "antd";
 import { CloseCircleOutlined, RightOutlined } from "@ant-design/icons";
+import { Navigate, useNavigate } from "react-router-dom";
+import { getUserStorage } from "../helpers/getUserStorage";
 
 const { Title, Text } = Typography;
 
 export const Escritorio = () => {
-  const salir = () => {};
+  const [user] = useState(getUserStorage());
+  const history = useNavigate();
+
+  const salir = () => {
+    localStorage.clear();
+    history("/ingresar");
+  };
   const siguienteTicket = () => {
     console.log("siguienteTicket");
   };
+
+  if (!user.asesor || !user.escritorio) {
+    return <Navigate to="/ingresar" />;
+  }
 
   return (
     <>
       <Row>
         <Col span={20}>
-          <Title level={2}>Marcela</Title>
+          <Title level={2}>{user.asesor}</Title>
           <Text>Usted está trabajando en el escritorio: </Text>
-          <Text type="success"> 5 </Text>
+          <Text type="success"> {user.escritorio} </Text>
         </Col>
 
         <Col span={4} align="right">
