@@ -1,4 +1,4 @@
-# MoviesApp
+# TicketApp
 
 Este proyecto se conecta aun backend y emite o recibe eventos en tiempo real.
 
@@ -9,7 +9,7 @@ npm install // Solo se debe hacer la primera vez
 ```
 
 ```bash
-npm run dev // Para correr la aplicacion
+npm start // Para correr la aplicacion
 ```
 
 ### `npm start`
