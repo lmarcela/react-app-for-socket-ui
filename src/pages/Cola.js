@@ -68,10 +68,7 @@ export const Cola = () => {
                   style={{ width: 300, marginTop: 16 }}
                   actions={[
                     <Tag color="volcano"> {ticket.asesor} </Tag>,
-                    <Tag color="magenta">
-                      {" "}
-                      Escritorio: {ticket.escritorio}{" "}
-                    </Tag>,
+                    <Tag color="magenta">Escritorio: {ticket.escritorio}</Tag>,
                   ]}
                 >
                   <Title> No. {ticket.number}</Title>
