@@ -1,6 +1,7 @@
 import { Card, Col, Divider, List, Row, Tag, Typography } from "antd";
 import React, { useContext, useEffect, useState } from "react";
 import { SocketContext } from "../context/SocketContext";
+import { getLastOnes } from "../helpers/getLastOnes";
 import { useHideMenu } from "../hooks/useHideMenu";
 
 const { Title, Text } = Typography;
@@ -54,6 +55,11 @@ export const Cola = () => {
     });
     return () => socket.off("assigned-ticket");
   }, [socket]);
+
+  useEffect(() => {
+    // getLastOnes().then((tickets) => setTickets(tickets)); // hace lo mismo
+    getLastOnes().then(setTickets);
+  }, []);
 
   return (
     <>
