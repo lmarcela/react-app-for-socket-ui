@@ -17,22 +17,23 @@ export const useMapbox = (initialPoint) => {
 
   const [coords, setCoords] = useState(initialPoint);
 
-  const addMarker = useCallback((ev) => {
-    const { lng, lat } = ev.lngLat;
+  const addMarker = useCallback((ev, id) => {
+    const { lng, lat } = ev.lngLat || ev;
 
     const marker = new mapboxgl.Marker();
-    marker.id = v4(); // TODO: si el marcador ya tiene ID
+    marker.id = id ?? v4();
 
     marker.setLngLat([lng, lat]).addTo(myMap.current).setDraggable(true);
 
     markers.current[marker.id] = marker;
 
-    // TODO: si el marcador tiene ID no emitir
-    newMarker.current.next({
-      id: marker.id,
-      lng,
-      lat,
-    });
+    if (!id) {
+      newMarker.current.next({
+        id: marker.id,
+        lng,
+        lat,
+      });
+    }
 
     marker.on("drag", ({ target }) => {
       const { id } = target;

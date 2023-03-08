@@ -9,9 +9,17 @@ const initialPoint = {
 };
 
 export const MapPage = () => {
-  const { mapRef, coords, newMarker$, movementMarker$ } =
+  const { addMarker, coords, mapRef, newMarker$, movementMarker$ } =
     useMapbox(initialPoint);
   const { socket } = useContext(SocketContext);
+
+  useEffect(() => {
+    socket.on("active-markers", (markers) => {
+      for (const key of Object.keys(markers)) {
+        addMarker(markers[key], key);
+      }
+    });
+  }, [socket,addMarker]);
 
   useEffect(() => {
     newMarker$.subscribe((marker) => {
