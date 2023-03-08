@@ -9,8 +9,14 @@ const initialPoint = {
 };
 
 export const MapPage = () => {
-  const { addMarker, coords, mapRef, newMarker$, movementMarker$ } =
-    useMapbox(initialPoint);
+  const {
+    addMarker,
+    coords,
+    mapRef,
+    movementMarker$,
+    newMarker$,
+    updateMarker,
+  } = useMapbox(initialPoint);
   const { socket } = useContext(SocketContext);
 
   useEffect(() => {
@@ -23,22 +29,27 @@ export const MapPage = () => {
 
   useEffect(() => {
     newMarker$.subscribe((marker) => {
-      // TODO: nuevo marcador emitir
       socket.emit("new-marker", marker);
     });
   }, [newMarker$, socket]);
-
-  useEffect(() => {
-    movementMarker$.subscribe((marker) => {
-      // TODO: movimiento marcador emitir
-    });
-  }, [movementMarker$]);
 
   useEffect(() => {
     socket.on("new-marker", (marker) => {
       addMarker(marker, marker.id);
     });
   }, [socket, addMarker]);
+
+  useEffect(() => {
+    movementMarker$.subscribe((marker) => {
+      socket.emit("update-marker", marker);
+    });
+  }, [movementMarker$, socket]);
+
+  useEffect(() => {
+    socket.on("update-marker", (marker) => {
+      updateMarker(marker, marker.id);
+    });
+  }, [socket, updateMarker]);
 
   return (
     <>
