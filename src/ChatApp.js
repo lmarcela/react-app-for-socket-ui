@@ -1,5 +1,7 @@
+import { AppRouter } from "./routers/AppRouter";
+
 function ChatApp() {
-  return <h1>Chat App</h1>;
+  return <AppRouter />;
 }
 
 export default ChatApp;

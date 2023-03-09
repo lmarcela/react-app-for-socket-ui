@@ -1,6 +1,6 @@
-# BaseApp
+# ChatApp
 
-Este proyecto sirve de base para crear otros que se conectan a un backend y emite o recibe eventos en tiempo real con socket io.
+Este proyecto se conecta a un backend y emite o recibe eventos en tiempo real con socket io.
 
 ## Uso
 
