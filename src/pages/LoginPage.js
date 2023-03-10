@@ -1,5 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+
 import { AuthContext } from "../auth/AuthContext";
 
 export const LoginPage = () => {
@@ -41,10 +43,12 @@ export const LoginPage = () => {
     form.rememberme
       ? localStorage.setItem("email", form.email)
       : localStorage.removeItem("email");
-    console.log(form);
 
     const { email, password } = form;
-    login(email, password);
+    const ok = await login(email, password);
+    if (!ok) {
+      Swal.fire("Error", "Verifique el usuario y contraseña", "error");
+    }
   };
 
   return (

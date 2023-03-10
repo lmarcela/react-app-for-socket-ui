@@ -16,7 +16,21 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     const resp = await fetchSinToken("login", { email, password }, "POST");
-    console.log(resp);
+
+    if (resp.ok) {
+      localStorage.setItem("token", resp.token);
+      const { user } = resp;
+
+      setAuth({
+        uid: user.uid,
+        checking: false,
+        logged: true,
+        name: user.name,
+        email: user.email,
+      });
+    }
+
+    return resp.ok;
   };
 
   const register = async (nombre, email, password) => {};
