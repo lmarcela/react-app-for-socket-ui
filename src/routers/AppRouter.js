@@ -7,8 +7,8 @@ import {
 } from "react-router-dom";
 import { AuthContext } from "../auth/AuthContext";
 
-import { ChatPage } from "../pages/ChatPage";
-import { AuthRouter } from "./AuthRouter";
+import { PrivateRoute } from "./PrivateRoute";
+import { PublicRoute } from "./PublicRoute";
 
 export const AppRouter = () => {
   const { auth, validateToken } = useContext(AuthContext);
@@ -23,8 +23,14 @@ export const AppRouter = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/auth/*" element={<AuthRouter />} />
-        <Route exact path="/" element={<ChatPage />} />
+        <Route
+          path="/auth/*"
+          element={<PublicRoute isAuthenticated={auth.logged} />}
+        />
+        <Route
+          path="/"
+          element={<PrivateRoute isAuthenticated={auth.logged} />}
+        />
 
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
