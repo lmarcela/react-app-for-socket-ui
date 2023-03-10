@@ -1,5 +1,5 @@
 import React, { createContext, useCallback, useState } from "react";
-import { fetchSinToken } from "../helpers/fetch";
+import { fetchWithoutToken, fetchWithToken } from "../helpers/fetch";
 
 export const AuthContext = createContext();
 
@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState(initialState);
 
   const login = async (email, password) => {
-    const resp = await fetchSinToken("login", { email, password }, "POST");
+    const resp = await fetchWithoutToken("login", { email, password }, "POST");
 
     if (resp.ok) {
       localStorage.setItem("token", resp.token);
@@ -36,7 +36,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const register = async (name, email, password) => {
-    const resp = await fetchSinToken(
+    const resp = await fetchWithoutToken(
       "login/new",
       { name, email, password },
       "POST"
@@ -61,7 +61,48 @@ export const AuthProvider = ({ children }) => {
     return resp.msg;
   };
 
-  const verificaToken = useCallback(async () => {}, []);
+  const validateToken = useCallback(async () => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      setAuth({
+        uid: null,
+        checking: false,
+        logged: false,
+        name: null,
+        email: null,
+      });
+
+      return false;
+    }
+
+    const resp = await fetchWithToken("login/renew");
+    if (resp.ok) {
+      localStorage.setItem("token", resp.token);
+      const { user } = resp;
+
+      setAuth({
+        uid: user.uid,
+        checking: false,
+        logged: true,
+        name: user.name,
+        email: user.email,
+      });
+
+      console.log("Autenticado");
+      return true;
+    } else {
+      setAuth({
+        uid: null,
+        checking: false,
+        logged: false,
+        name: null,
+        email: null,
+      });
+
+      return false;
+    }
+  }, []);
 
   const logout = () => {};
 
@@ -71,7 +112,7 @@ export const AuthProvider = ({ children }) => {
         auth,
         login,
         register,
-        verificaToken,
+        validateToken,
         logout,
       }}
     >
