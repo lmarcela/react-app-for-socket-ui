@@ -51,6 +51,10 @@ export const LoginPage = () => {
     }
   };
 
+  const everythingOk = () => {
+    return form.email.length > 0 && form.password.length > 0 ? true : false;
+  };
+
   return (
     <form
       className="login100-form validate-form flex-sb flex-w"
@@ -103,7 +107,13 @@ export const LoginPage = () => {
       </div>
 
       <div className="container-login100-form-btn m-t-17">
-        <button className="login100-form-btn">Ingresar</button>
+        <button
+          type="submit"
+          className="login100-form-btn"
+          disabled={!everythingOk()}
+        >
+          Ingresar
+        </button>
       </div>
     </form>
   );
