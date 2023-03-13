@@ -1,15 +1,23 @@
 import React, { useContext } from "react";
 import { ChatContext } from "../context/chat/ChatContext";
+import { fetchWithToken } from "../helpers/fetch";
 import { types } from "../types/types";
 
 export const SidebarChatItem = ({ user }) => {
   const { chatState, dispatch } = useContext(ChatContext);
   const { chatActive } = chatState;
 
-  const onClick = () => {
+  const onClick = async () => {
     dispatch({
       type: types.activateChat,
       payload: user.uid,
+    });
+
+    // Cargar los mensajes del chat
+    const resp = await fetchWithToken(`messages/${user.uid}`);
+    dispatch({
+      type: types.loadMessages,
+      payload: resp.messages,
     });
   };
 
