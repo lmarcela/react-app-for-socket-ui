@@ -9,6 +9,15 @@ import { types } from "../../types/types";
 
 export const ChatReducer = (state, action) => {
   switch (action.type) {
+    
+    case types.closeSession:
+      return {
+        uid: "",
+        chatActive: null,
+        users: [],
+        messages: [],
+      };
+
     case types.usersLoaded:
       return {
         ...state,
