@@ -10,7 +10,7 @@ export const SocketContext = createContext();
 
 export const SocketProvider = ({ children }) => {
   const { socket, online, connectSocket, disconnectSocket } = useSocket(
-    "http://localhost:8080"
+    "https://node-for-socket-cix3iauz0-lmarcela.vercel.app"
   );
   const { auth } = useContext(AuthContext);
   const { dispatch } = useContext(ChatContext);
