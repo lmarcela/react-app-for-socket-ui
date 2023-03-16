@@ -2,7 +2,7 @@
 
 Esta rama se conecta aun backend (https://github.com/lmarcela/web-sockets-basic/tree/backend-server-movie-names-app)y emite o recibe eventos CRUD en tiempo real.
 
-Demo: 
+Demo: https://react-app-for-socket-m81wap1rv-lmarcela.vercel.app/
 
 Url backend: https://node-socket-movies.onrender.com
 
