@@ -2,7 +2,7 @@
 
 Este proyecto se conecta aun backend y emite o recibe eventos en tiempo real.
 
-Demo: 
+Demo: https://react-app-for-socket-kdbj65f62-lmarcela.vercel.app/
 
 Url backend: https://node-socket-ticket.onrender.com
 
