@@ -5,7 +5,7 @@ import { useSocket } from "../hooks/useSocket";
 export const SocketContext = createContext();
 
 export const SocketProvider = ({ children }) => {
-  const { socket, online } = useSocket("https://node-for-socket-io-git-backend-server-maps-app-lmarcela.vercel.app");
+  const { socket, online } = useSocket(process.env.REACT_APP_MAP_SOCKET_URL);
 
   return (
     <SocketContext.Provider value={{ socket, online }}>
