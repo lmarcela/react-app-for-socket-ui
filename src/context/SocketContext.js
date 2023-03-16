@@ -11,7 +11,7 @@ export const SocketContext = createContext();
 export const SocketProvider = ({ children }) => {
   const { socket, online, connectSocket, disconnectSocket } = useSocket(
     // "ws://localhost:8080"
-    "https://node-socket-uzat.onrender.com"
+    process.env.REACT_APP_SOCKET_URL
   );
   const { auth } = useContext(AuthContext);
   const { dispatch } = useContext(ChatContext);

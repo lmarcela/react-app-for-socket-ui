@@ -2,7 +2,9 @@
 
 Este proyecto se conecta a un backend y emite o recibe eventos en tiempo real con socket io.
 
-Conectado a Backend!
+Demo: https://react-app-for-socket-gdqmvplqc-lmarcela.vercel.app/
+
+Url backend: https://node-socket-uzat.onrender.com/api
 
 ## Uso
 
