@@ -6,6 +6,9 @@ import { Subject } from "rxjs";
 mapboxgl.accessToken =
   "pk.eyJ1IjoibWFyY2VsYTk0MDkiLCJhIjoiY2xleW91OHgyMDNsazNzcDF0M3A0ZWRpbSJ9.7zPRIRhH605mh8b-V2KrCg";
 
+// eslint-disable-next-line import/no-webpack-loader-syntax
+mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
+
 export const useMapbox = (initialPoint) => {
   const mapRef = useRef();
   const myMap = useRef();
